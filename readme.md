@@ -3,14 +3,18 @@ Pariksha is a question bank and testing web app for Computer Based Assessment (C
 
 ## Features
 The web app allows education institutes to conduct examinations and streamline their assessment process. The features of Pariksha include:
-* Providing registration for the examinations, examination centre, and student information.
 * Generating random sets of questions from the database.
-* Assessing responses and outputting scores automatically and immediately.
+* Assessing responses and returning scores automatically and immediately.
+
+## Under Development  
+* CRUD interface to database for admins
+* To develop test-taker registration process.
 * Evaluating results of examinations with statistical analyses.
 
 ## Getting Started
 ### Prerequisites
-The question-answer set should exist in the database before installation.
+* MySQL database
+* The question-answer set should exist in the database before installation.
 
 ### Installing
 1. Copy the contents of Pariksha repository into your webroot.
