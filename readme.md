@@ -17,4 +17,4 @@ The question-answer set should exist in the database before installation.
 2. In the file [scripts/config.php](https://github.com/klbm9999/Pariksha/blob/master/scripts/config.php):
    * specify the details of the database, such as the username, password, and database name; and
    * specify the `no_of_questions` parameter.
-3. Open the [URL](http://your_webroot/quiz.php).
+3. Open the URL `http://your_webroot/quiz.php`.
