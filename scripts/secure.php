@@ -1,7 +1,7 @@
 <?php
 
 $config = include('config.php');
-$password = md5($config['admin_pass']);
+$password = md5($config['admin_pass']); #change this mechanism
 
 session_start();
 if (!isset($_SESSION['loggedIn'])) {
