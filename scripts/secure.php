@@ -1,22 +1,35 @@
 <?php
 
+$time = $_SERVER['REQUEST_TIME'];
+
+$timeout_duration = 1800;
+if(isset($_SESSION['LAST_ACTIVITY'])&&
+	$time - $_SESSION['LAST_ACTIVITY'] > $timeout_duration) {
+	session_unset();
+	session_destroy();
+}
+session_start();
+
 $config = include('config.php');
 $password = md5($config['admin_pass']); #change this mechanism
 
-session_start();
-if (!isset($_SESSION['loggedIn'])) {
-    $_SESSION['loggedIn'] = false;
+if (!isset($_SESSION['LOGGED_IN'])) {
+    $_SESSION['LOGGED_IN'] = false;
 }
 
-if (isset($_POST['password'])) {
-    if (md5($_POST['password']) == $password) {
-        $_SESSION['loggedIn'] = true;
+if (isset($_POST['PASSWORD'])) {
+    if (md5($_POST['PASSWORD']) == $password) {
+    	
+        $_SESSION['LOGGED_IN'] = true;
+        $_SESSION['LAST_ACTIVITY'] = $time;
+        
     } else {
         die ('Incorrect password');
     }
 } 
 
-if (!$_SESSION['loggedIn']): 
+
+if (!$_SESSION['LOGGED_IN']): 
 
 ?>
 
