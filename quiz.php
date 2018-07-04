@@ -7,7 +7,7 @@
 	$questions = fetch_random_set_questions();
 	$qintegrity = "";
 	for ($i=0; $i <count($questions) ; $i++) { 
-			$qintegrity .= $questions[$i]->get_answer();
+			$qintegrity .= $questions[$i]->get_qno();
 	}
 
 	/*if(isset($_SESSION['questions'])) {

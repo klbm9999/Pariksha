@@ -16,11 +16,13 @@
 	
 	class Question
 	{
+		private $qno;
 		private $description;
 		private $options;
 		private $answer;
-		function __construct($desc,$optn,$ans)
+		function __construct($qnumber,$desc,$optn,$ans)
 		{
+			$this->qno = $qnumber;
 			$this->description = $desc;
 			$this->options = explode(',', $optn);
 			$this->answer = $ans;
@@ -42,6 +44,10 @@
 		function get_answer()
 		{
 			return strval($this->answer);
+		}
+		function get_qno()
+		{
+			return strval($this->qno);
 		}
 	}
 
@@ -71,14 +77,14 @@
 
 		$questions = array();
 
-		$stmt = $conn->prepare('SELECT description,options,answer FROM questions WHERE qno=:qno');
+		$stmt = $conn->prepare('SELECT qno,description,options,answer FROM questions WHERE qno=:qno');
 
 		for ($q=0; $q < count($qnos); $q++) { 
 			$stmt->bindParam(':qno',$qnos[$q]);
 			$stmt->execute();
 			$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 			foreach ($stmt->fetchAll() as $key => $value) {
-				$temp = new Question($value["description"],$value["options"],$value["answer"]);
+				$temp = new Question($value["qno"],$value["description"],$value["options"],$value["answer"]);
 				$questions[] = $temp;
 			}
 		}
@@ -92,10 +98,26 @@
 	    return array_slice($numbers, 0, $quantity);
 	}
 
-	function verifySubmission($submission,$encrypted_answers)
+	function verifySubmission($submission,$encrypted_qno)
 	{
-		$answers = decrypt($encrypted_answers);
-		$answers = str_split($answers);
+		$qnos = decrypt($encrypted_qno);
+		$qnos = str_split($qnos);
+
+		$conn = connect_db();
+		$stmt = $conn->prepare('SELECT answer FROM questions WHERE qno=:qno');
+
+		$answers = array();
+
+		for($i=0;$i<count($qnos);$i++) {
+			$stmt->bindParam(':qno',$qnos[$i]);
+			$stmt->execute();
+			$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+			foreach ($stmt->fetchAll() as $key => $value) {
+				$temp = $value["answer"];
+				$answers[] = $temp;
+			}	
+		}
+
 		$count = 0;
 		$sub = json_decode($submission);
 		$no_of_questions = min(count($sub),NO_OF_QUESTIONS);
