@@ -24,8 +24,8 @@ The web app allows education institutes to conduct examinations and streamline t
 3. Open the URL `http://your_webroot/quiz.php`.
 
 ## FAQ
-### What is a "webroot"?
+#### What is a "webroot"?
 A webroot is the "root" directory or folder that contains all the files related to the website. 
 
-### Can the difficulty level of each question be set so the Pariksha can automatically select questions based on the difficulty level?
+#### Can the difficulty level of each question be set so the Pariksha can automatically select questions based on the difficulty level?
 This is a feature we would like to implement!
