@@ -27,5 +27,5 @@ The web app allows education institutes to conduct examinations and streamline t
 #### What is a "webroot"?
 A webroot is the "root" directory or folder that contains all the files related to the website. 
 
-#### Can the difficulty level of each question be set so the Pariksha can automatically select questions based on the difficulty level?
-This is a feature we would like to implement!
+#### Can the difficulty level of each question be set so that questions can be automatically selected based on the difficulty level?
+This is a feature that will be implemented!
